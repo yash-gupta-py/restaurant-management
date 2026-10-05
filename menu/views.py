@@ -2,8 +2,8 @@ from rest_framework.views import APIView
 from rest_framework import status, generics
 from rest_framework.response import Response
 from django.shortcuts import render
-from .models import Category
-from .serializers import CategorySerializer
+from .models import Category, MenuItem
+from .serializers import CategorySerializer, MenuItemSerializer
 
 # Create your views here.
 # class CategoryListView(APIView):
@@ -17,3 +17,7 @@ from .serializers import CategorySerializer
 class CategoryListView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+class MenuItemListView(generics.ListCreateAPIView):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer

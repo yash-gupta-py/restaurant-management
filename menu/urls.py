@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CategoryListView
+from .views import CategoryListView, MenuItemListView
 
 
 urlpatterns = [
@@ -7,5 +7,10 @@ urlpatterns = [
         "categories/",
         CategoryListView.as_view(),
         name="category-list",
+    ),
+    path(
+        "items/",
+        MenuItemListView.as_view(),
+        name="item-list",
     ),
 ]
