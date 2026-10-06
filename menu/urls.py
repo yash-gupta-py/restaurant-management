@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import CategoryListView, MenuItemListView
+from .views import CategoryListView, MenuItemListView, MenuItemDetailView
 
 
 urlpatterns = [
@@ -9,8 +9,13 @@ urlpatterns = [
         name="category-list",
     ),
     path(
-        "items/",
+        "menu-items/",
         MenuItemListView.as_view(),
         name="item-list",
+    ),
+    path(
+        "menu-items/<int:pk>/",
+        MenuItemDetailView.as_view(),
+        name="menu-item-detail"
     ),
 ]

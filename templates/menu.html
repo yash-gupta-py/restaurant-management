@@ -1,0 +1,190 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Menu Management</title>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            🍽️ <span>Restaurant</span>
+        </div>
+
+        <nav>
+            <a href="/">🏠 Dashboard</a>
+            <a href="/menu/" class="active">🍔 Menu</a>
+            <a href="#">🪑 Tables</a>
+            <a href="#">📅 Reservations</a>
+            <a href="#">🛒 Orders</a>
+            <a href="#">💳 Payments</a>
+        </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Menu Management</h1>
+                <p>View and manage restaurant menu items</p>
+            </div>
+
+            <a href="/" class="back-button">
+                ← Dashboard
+            </a>
+
+        </header>
+
+
+        <section class="menu-container">
+
+            <div class="section-header">
+                <h2>Menu Items</h2>
+
+                <div>
+                    <button id="refresh-menu">🔄 Refresh</button>
+                    <button id="show-add-form">＋ Add Item</button>
+                </div>
+            </div>
+            <div id="add-menu-form" class="form-card hidden">
+
+                <h2>Add Menu Item</h2>
+
+                <form id="menu-form">
+                    {% csrf_token %}
+                    <label>Name</label>
+                    <input type="text" id="item-name" required>
+
+                    <label>Description</label>
+                    <textarea id="item-description"></textarea>
+
+                    <label>Price</label>
+                    <input type="number" id="item-price" step="0.01" min="0.01" required>
+
+                    <label>Category</label>
+                    <select id="item-category" required>
+                        <option value="">Select category</option>
+                    </select>
+
+                    <label>
+                        <input type="checkbox" id="item-available" checked>
+                        Available
+                    </label>
+
+                    <div class="form-actions">
+                        <button type="submit">Save Item</button>
+                        <button type="button" id="cancel-form">Cancel</button>
+                    </div>
+
+                    <p id="form-message"></p>
+
+                </form>
+
+            </div>
+            <!-- Edit Menu Item Form -->
+
+            <div id="edit-menu-form" class="modal hidden">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h2>Edit Menu Item</h2>
+
+                        <button type="button" id="close-edit-form">
+                            ×
+                        </button>
+                    </div>
+
+                    <form id="edit-form">
+
+                        <label>Name</label>
+                        <input
+                            type="text"
+                            id="edit-item-name"
+                            required
+                        >
+
+                        <label>Description</label>
+                        <textarea
+                            id="edit-item-description"
+                        ></textarea>
+
+                        <label>Price</label>
+                        <input
+                            type="number"
+                            id="edit-item-price"
+                            step="0.01"
+                            min="0.01"
+                            required
+                        >
+
+                        <label>Category</label>
+
+                        <select id="edit-item-category" required>
+                            <option value="">
+                                Select category
+                            </option>
+                        </select>
+
+                        <label class="checkbox-label">
+                            <input
+                                type="checkbox"
+                                id="edit-item-available"
+                            >
+
+                            Available
+                        </label>
+
+                        <div class="form-actions">
+
+                            <button type="submit">
+                                Save Changes
+                            </button>
+
+                            <button
+                                type="button"
+                                id="cancel-edit-form"
+                            >
+                                Cancel
+                            </button>
+
+                        </div>
+
+                        <p id="edit-form-message"></p>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div id="menu-list" class="menu-grid">
+
+                <p>Loading menu items...</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="{% static 'js/menu.js' %}"></script>
+
+</body>
+</html>

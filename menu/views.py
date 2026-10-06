@@ -21,3 +21,7 @@ class CategoryListView(generics.ListCreateAPIView):
 class MenuItemListView(generics.ListCreateAPIView):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
+
+class MenuItemDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer

@@ -16,9 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import dashboard, menu
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', dashboard, name="dashboard"),
+    path("menu/", menu, name="menu"),
+
     path('api/v1/menu/', include('menu.urls')),
     path('api/v1/tables/', include('table.urls')),
     path('api/v1/reservations/', include('reservations.urls')),
